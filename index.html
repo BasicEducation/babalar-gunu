@@ -221,10 +221,23 @@
   </div>
 
   <!-- Müzik (sade, direkt autoplay) -->
-  <audio autoplay loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
-    Tarayıcınız müziği desteklemiyor.
-  </audio>
+<audio id="bgm" autoplay muted loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+  Tarayıcınız müziği desteklemiyor.
+</audio>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const audio = document.getElementById("bgm");
+    // Kısa bir gecikme ile muted kaldırılır
+    setTimeout(() => {
+      audio.muted = false;
+      audio.play().catch((err) => {
+        console.log("Otomatik ses başlatılamadı:", err);
+      });
+    }, 500); // 0.5 saniye bekletme güvenlik açısından iyidir
+  });
+</script>  
 
   <script>
     let isOpen = false;
