@@ -191,8 +191,6 @@
   </style>
 </head>
 <body>
-
-  <!-- Yıldızlar -->
   <script>
     for (let i = 0; i < 100; i++) {
       const star = document.createElement("div");
@@ -204,10 +202,9 @@
     }
   </script>
 
-  <!-- Merkezli içerik -->
   <div class="centered">
     <div class="message-box" id="message">
-      <h1>Babalar Günün Kutlu Olsun!</h1>
+      <h1>Babalar Günü Kutlu Olsun!</h1>
       <p>Canım babacığım, senin gibi bir rehberim olduğu için çok şanslıyım. Seni çok seviyorum!</p>
       <button class="close-btn" onclick="closeGift()">Kapat</button>
     </div>
@@ -220,32 +217,23 @@
     </div>
   </div>
 
-  <!-- Müzik (sade, direkt autoplay) -->
-<audio id="bgm" autoplay muted loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
-  Tarayıcınız müziği desteklemiyor.
-</audio>
-
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    const audio = document.getElementById("bgm");
-    // Kısa bir gecikme ile muted kaldırılır
-    setTimeout(() => {
-      audio.muted = false;
-      audio.play().catch((err) => {
-        console.log("Otomatik ses başlatılamadı:", err);
-      });
-    }, 500); // 0.5 saniye bekletme güvenlik açısından iyidir
-  });
-</script>  
+  <audio id="bgm" autoplay muted loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+    Tarayıcınız bu sesi desteklemiyor.
+  </audio>
 
   <script>
-    let isOpen = false;
+    window.addEventListener("DOMContentLoaded", () => {
+      const audio = document.getElementById("bgm");
+      setTimeout(() => {
+        audio.muted = false;
+        audio.play().catch(err => console.log("Otomatik ses başlatılamadı:", err));
+      }, 500);
+    });
 
+    let isOpen = false;
     function toggleGift(event) {
-      if (!isOpen) {
-        openGift(event);
-      }
+      if (!isOpen) openGift(event);
     }
 
     function openGift(event) {
