@@ -217,21 +217,15 @@
     </div>
   </div>
 
-  <audio id="bgm" autoplay muted loop>
+  <audio id="bgm" loop>
     <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
     Tarayıcınız bu sesi desteklemiyor.
   </audio>
 
   <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      const audio = document.getElementById("bgm");
-      setTimeout(() => {
-        audio.muted = false;
-        audio.play().catch(err => console.log("Otomatik ses başlatılamadı:", err));
-      }, 500);
-    });
-
     let isOpen = false;
+    let hasPlayed = false;
+
     function toggleGift(event) {
       if (!isOpen) openGift(event);
     }
@@ -263,6 +257,12 @@
       setTimeout(() => {
         document.getElementById('message').classList.add('visible');
       }, 800);
+
+      const audio = document.getElementById("bgm");
+      if (!hasPlayed) {
+        audio.play().catch(err => console.log("Ses başlatılamadı:", err));
+        hasPlayed = true;
+      }
     }
 
     function closeGift() {
